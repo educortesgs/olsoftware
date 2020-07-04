@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "olsoftware-11db0": {
+      "hosting": {
+        "pruebaOL": [
+          "olsoftware-11db0"
+        ]
+      }
+    }
+  }
+}

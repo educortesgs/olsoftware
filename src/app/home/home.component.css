@@ -1,0 +1,158 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/templates/simple-sidebar)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+ #page-content-wrapper {
+  background-color: #f7f7f7;
+}
+ #wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  width: 370px;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  background: rgba(64,168,237,1);
+  background: -moz-linear-gradient(top, rgba(64,168,237,1) 0%, rgba(30,68,174,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(64,168,237,1)), color-stop(100%, rgba(30,68,174,1)));
+  background: -webkit-linear-gradient(top, rgba(64,168,237,1) 0%, rgba(30,68,174,1) 100%);
+  background: -o-linear-gradient(top, rgba(64,168,237,1) 0%, rgba(30,68,174,1) 100%);
+  background: -ms-linear-gradient(top, rgba(64,168,237,1) 0%, rgba(30,68,174,1) 100%);
+  background: linear-gradient(to bottom, rgba(64,168,237,1) 0%, rgba(30,68,174,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#40a8ed', endColorstr='#1e44ae', GradientType=0 );
+}
+#sidebar-wrapper .dropdown-divider{
+  width: 90%;
+  margin: 0 auto;
+}
+#sidebar-wrapper .sidebar-heading {
+  padding: 22px 1.25rem;
+  font-size: 18px;
+  color: white;
+}
+#sidebar-wrapper .sidebar-heading i{
+  color: rgb(255, 255, 255);
+  padding-right: 10px;
+  font-size: 20px;
+}
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -23.1rem;
+  }
+}
+.navbar i {
+  color: #1d43ad;
+  font-size: 25px;
+  cursor: pointer;
+  padding: 15px;
+}
+.navbar p{
+  margin: auto auto auto 0;
+  font-size: 18px;
+  color: #1d43ad;
+}
+.list-group li{
+  list-style: none;
+}
+.nav-item{
+  margin: 5px 0;
+}
+.nav-item a{
+  color: white;
+  text-decoration: none;
+}
+.dropdown-menu-right a{
+  color: black;
+}
+.list-group li a i{
+  font-size: 20px;
+  margin-right:20px ;
+}
+.container-fluid{
+  display: flex;
+  flex-direction: column;
+}
+.container-fluid h2{
+  text-align: left;
+  font-size: 20px;
+  color: #1d43ad;
+}
+@media (min-width: 768px) {
+  .container-fluid{
+    flex-direction: row;
+  }
+}
+.contenedor-filtrar{
+  width: 100%;
+  background-color: white;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
+@media (min-width: 768px) {
+  .contenedor-filtrar{
+    width: 100%;
+    max-width: 350px;
+  }
+}
+.contenedor-usuario{
+  margin: 10px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+.filtrar{
+  display: flex;
+  flex-direction: column;
+}
+.filtrar input, select{
+  width: 100%;
+}
+/*Botones*/
+.botones{
+  text-decoration: none;
+  margin: 20px auto;
+}
+.btn-filtrar, .btn-limpiar{
+  border-radius: 10px;
+}
+.btn-filtrar{
+ background-color: #84bb40;
+ color: white;
+ padding: 10px 29px;
+ border: 1px solid #84bb40;
+ margin-right: 15px;
+}
+.btn-limpiar{
+  color: #84bb40;
+  padding: 10px 25px;
+  background-color: transparent;
+  border: 1px solid #84bb40;
+  margin-left: 15px;
+}

@@ -1,0 +1,144 @@
+<div class="" [className]="myClass ? 'toggled d-flex': 'off d-flex'" id="wrapper" >
+<!-- *ngIf="!user$; then redireccionar()" -->
+
+
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading"><i class="fas fa-circle"></i>OLSoftware </div>
+      <div class="dropdown-divider"></div>
+      <div class="list-group list-group-flush">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-map"></i>Programación
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Hijo1</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-tasks"></i>Gestión de operaciones
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Hijo1</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-sliders-h"></i>Perfiles
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Hijo1</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-tag"></i>Roles
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i>Usuario
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-sticky-note"></i>Reportes
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Hijo1</a>
+            </div>
+        </li>
+        <!-- <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <a (click)="ocultarMenu()" id="menu-toggle"><i class="fas fa-bars"></i></a>
+        <p>Prueba Front-end</p>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" 
+        *ngIf="user$ | async as user">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link"  *ngIf="user$">{{ user.email }} </a>
+              <!-- {{user$ | async | json}} -->
+            </li>
+            <li class="">
+              <a class="" (click)="onLogout()"><i class="fas fa-sign-out-alt"></i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <div class="contenedor-usuario">
+            <div class="datos">
+                <h2 class="mt-4"><i class="fas fa-users"></i> Usuarios Existentes</h2>
+                <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+            </div>
+        </div>
+        <div class="contenedor-filtrar">
+            <div class="filtrar">
+                <h2 class="mt-4"><i class="fas fa-filter"></i> Filtrar búsqueda</h2>
+                <label for="nombre">Nombre
+                <input type="text" name="nombre" id="nombre"></label>
+
+                <label for="apellidos">Apellidos
+                <input type="text" name="apellidos" id="apellidos"></label>
+
+                <label for="cc">Identificación (C.C)
+                <input type="text" name="cc" id="cc"></label>
+
+                <label for="nombre">Rol asociado
+                <select name="rol" id="rol">
+                    <option selected></option>
+                    <option>Administrador</option>
+                    <option>Recolector</option>
+                    <option>Conductor</option>
+                </select></label>
+
+                <label for="nombre">Estado
+                    <select name="estado" id="estado">
+                        <option selected></option>
+                        <option>Activo</option>
+                        <option>Inactivo</option>
+                    </select>
+                </label>
+
+                <label for="password">Contraseña
+                <input type="text" name="password" id="password"></label>
+
+                <label for="tel">Teléfono
+                <input type="text" name="tel" id="tel"></label>
+
+                <label for="email">Correo electrónico
+                <input type="text" name="email" id="email"></label>
+                <div class="botones">
+                    <a class="btn-filtrar">Filtrar</a>
+                    <a class="btn-limpiar">Limpiar</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
