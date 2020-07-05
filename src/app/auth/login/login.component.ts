@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../servicesfirebase/auth.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert';
 
@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
           
         }
       } catch (error) {
+
         console.log(error);
       }
     // }else{

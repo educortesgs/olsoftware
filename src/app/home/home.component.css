@@ -66,6 +66,11 @@
     margin-left: -23.1rem;
   }
 }
+.modal select, .container-fluid select{
+  padding: 6px;
+  border: 1px solid #cfcfcf;
+  border-radius: 5px;
+}
 .navbar i {
   color: #1d43ad;
   font-size: 25px;
@@ -126,6 +131,27 @@
   background-color: white;
   padding: 20px;
   border-radius: 10px;
+  width: 100%;
+}
+.titulo{
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+.btn-crear{
+  padding: 7px 25px;
+  background-color: #1d43ad;
+  border-radius: 10px;
+  color: white;
+  height: 40px;
+  margin-left: auto;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+.btn-crear:hover{
+  color: white;
+  background-color: #0c225c;
 }
 .filtrar{
   display: flex;
@@ -141,6 +167,8 @@
 }
 .btn-filtrar, .btn-limpiar{
   border-radius: 10px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
 }
 .btn-filtrar{
  background-color: #84bb40;
@@ -149,10 +177,18 @@
  border: 1px solid #84bb40;
  margin-right: 15px;
 }
+.btn-filtrar:hover{
+  color: white;
+  background-color: #365e05;
+}
 .btn-limpiar{
   color: #84bb40;
   padding: 10px 25px;
   background-color: transparent;
   border: 1px solid #84bb40;
   margin-left: 15px;
+}
+.btn-limpiar:hover{
+  color: #84bb40;
+  background-color: #e8f1dd;
 }

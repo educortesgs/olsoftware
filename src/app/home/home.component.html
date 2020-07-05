@@ -87,25 +87,74 @@
 
       <div class="container-fluid">
         <div class="contenedor-usuario">
+            <div class="titulo">
+              <h2 class="mt-4"><i class="fas fa-users"></i> Usuarios Existentes</h2>
+              <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crear-registro" data-whatever="@getbootstrap">Open modal for @getbootstrap</button> -->
+              <a class="btn-crear mt-3" data-toggle="modal" data-target="#crear-registro" data-whatever="@getbootstrap"><i class="fa fa-plus"> </i> Crear</a>
+            </div>
             <div class="datos">
-                <h2 class="mt-4"><i class="fas fa-users"></i> Usuarios Existentes</h2>
-                <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+              <table class="table mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Identificación</th>
+                    <th scope="col">Rol asociado</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Eduardo</th>
+                    <td>Cortes</td>
+                    <td>1143874920</td>
+                    <td>Administrador</td>
+                    <td>Activo</td>
+                    <td>3226106845</td>
+                    <td>educortesgs@hotmail.com</td>
+                    <td><a class="btn-crear mt-3" data-toggle="modal" data-target="#editar-registro" data-whatever="@getbootstrap"><i class="fas fa-user-edit"></i> </a><i class="fas fa-trash"></i></td>
+                  </tr>
+                </tbody>
+                
+              </table>
+
+              <div class="alert alert-warning text-center mt-3">
+                <h4 class="alert-heading">No hay registros</h4>
+                <p>
+                  <i class="fa fa-exclamation fa-2x"></i>
+                </p>
+              </div>
+              <div class="alert alert-info text-center mt-3">
+                <h4 class="alert-heading">Cargando</h4>
+                <p>
+                  <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+                </p>
+                <p>
+                  Por favor espere
+                </p>
+              </div>
+
             </div>
         </div>
+
+
+
         <div class="contenedor-filtrar">
             <div class="filtrar">
                 <h2 class="mt-4"><i class="fas fa-filter"></i> Filtrar búsqueda</h2>
                 <label for="nombre">Nombre
-                <input type="text" name="nombre" id="nombre"></label>
+                <input type="text" name="nombre" id="nombre" class="form-control"></label>
 
                 <label for="apellidos">Apellidos
-                <input type="text" name="apellidos" id="apellidos"></label>
+                <input type="text" name="apellidos" id="apellidos" class="form-control"></label>
 
                 <label for="cc">Identificación (C.C)
-                <input type="text" name="cc" id="cc"></label>
+                <input type="text" name="cc" id="cc" class="form-control"></label>
 
-                <label for="nombre">Rol asociado
+                <label for="rol">Rol asociado
                 <select name="rol" id="rol">
                     <option selected></option>
                     <option>Administrador</option>
@@ -113,7 +162,7 @@
                     <option>Conductor</option>
                 </select></label>
 
-                <label for="nombre">Estado
+                <label for="estado">Estado
                     <select name="estado" id="estado">
                         <option selected></option>
                         <option>Activo</option>
@@ -122,16 +171,16 @@
                 </label>
 
                 <label for="password">Contraseña
-                <input type="text" name="password" id="password"></label>
+                <input type="text" name="password" id="password" class="form-control"></label>
 
                 <label for="tel">Teléfono
-                <input type="text" name="tel" id="tel"></label>
+                <input type="text" name="tel" id="tel" class="form-control"></label>
 
                 <label for="email">Correo electrónico
-                <input type="text" name="email" id="email"></label>
+                <input type="text" name="email" id="email" class="form-control"></label>
                 <div class="botones">
-                    <a class="btn-filtrar">Filtrar</a>
-                    <a class="btn-limpiar">Limpiar</a>
+                    <a class="btn-filtrar mb-3">Filtrar</a>
+                    <a class="btn-limpiar mb-3">Limpiar</a>
                 </div>
             </div>
         </div>
@@ -142,3 +191,198 @@
   </div>
   <!-- /#wrapper -->
 
+
+<!-- CREAR REGISTRO -->
+<div class="modal fade" id="crear-registro" tabindex="-1" role="dialog" aria-labelledby="example-crear-registro" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="example-crear-registro">Argregar nuevo usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="column" (ngSubmit)="guardar(f)" #f="ngForm">
+          <div class="row">
+            <div class="form-group col">
+              <label for="nombre" class="col-form-label">Nombres</label>
+              <input  type="text" 
+                      class="form-control" 
+                      id="nombre"
+                      [(ngModel)]="registro.nombre"
+                      name="nombre"
+                      required>
+
+              <label for="cc" class="col-form-label">Identificación (C.C)</label>
+              <input  type="text" 
+                      class="form-control" 
+                      id="cc"
+                      [(ngModel)]="registro.cc"
+                      name="cc"
+                      required>
+
+              <label for="estado" class="col-form-label">Estado</label>
+              <select id="estado"
+                      class="form-control"
+                      [(ngModel)]="registro.estado"
+                      name="estado"
+                      required>
+                <option selected>Activo</option>
+                <option>Inactivo</option>
+              </select>
+
+              <label for="tel" class="col-form-label">Teléfono</label>
+              <input  type="text" 
+                      class="form-control" 
+                      id="tel"
+                      [(ngModel)]="registro.tel"
+                      name="tel"
+                      required>
+            </div>
+
+            <div class="form-group col">
+              <label for="apellidos" class="col-form-label">Apellidos</label>
+              <input  type="text" 
+                      class="form-control" 
+                      id="apellido"
+                      [(ngModel)]="registro.apellido"
+                      name="apellido"
+                      required>
+
+              <label for="rol" class="col-form-label">Rol asiciado</label>
+              <select id="rol"
+                      class="form-control"
+                      [(ngModel)]="registro.rol"
+                      name="rol"
+                      required>
+                <option selected>Administrador</option>
+                <option>Recolector</option>
+                <option>Conductor</option>
+              </select>
+
+              <label for="password" class="col-form-label">Contraseña</label>
+              <input  type="password" 
+                      class="form-control" 
+                      id="password"
+                      [(ngModel)]="registro.pass"
+                      name="pass"
+                      required>
+
+              <label for="email" class="col-form-label">Correo electrónico</label>
+              <input  type="email" 
+                      class="form-control" 
+                      id="email"
+                      [(ngModel)]="registro.email"
+                      name="email"
+                      required>
+                      <!-- <input [(ngModel)]="person.firstName" name="first"> -->
+            </div>
+          </div>
+          <div class="botones row">
+            <button type="submit" class="btn-filtrar">Aceptar</button>
+            <button class="btn-limpiar" data-dismiss="modal">Cancelar</button>
+          </div>
+      </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- CREAR REGISTRO -->
+<!-- EDITAR REGISTRO -->
+<div class="modal fade" id="editar-registro" tabindex="-1" role="dialog" aria-labelledby="example-editar-registro" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="example-editar-registro">Editar usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="row">
+
+            <div class="form-group col">
+              <label for="nombre" class="col-form-label">Nombres</label>
+              <input  type="text" 
+                      class="form-control" 
+                      id="nombre"
+                      [(ngModel)]="registro.nombre"
+                      name="nombre"
+                      required>
+
+              <label for="cc" class="col-form-label">Identificación (C.C)</label>
+              <input  type="text" 
+                      class="form-control" 
+                      id="cc"
+                      [(ngModel)]="registro.cc"
+                      name="cc"
+                      required>
+
+              <label for="estado" class="col-form-label">Estado</label>
+              <select id="estado"
+                      class="form-control"
+                      [(ngModel)]="registro.estado"
+                      name="estado"
+                      required>
+                <option selected>Activo</option>
+                <option>Inactivo</option>
+              </select>
+
+              <label for="tel" class="col-form-label">Teléfono</label>
+              <input  type="text" 
+                      class="form-control" 
+                      id="tel"
+                      [(ngModel)]="registro.tel"
+                      name="tel"
+                      required>
+            </div>
+
+            <div class="form-group col">
+              <label for="apellidos" class="col-form-label">Apellidos</label>
+              <input  type="text" 
+                      class="form-control" 
+                      id="apellido"
+                      [(ngModel)]="registro.apellido"
+                      name="apellido"
+                      required>
+
+              <label for="rol" class="col-form-label">Rol asiciado</label>
+              <select id="rol"
+                      class="form-control"
+                      [(ngModel)]="registro.rol"
+                      name="rol"
+                      required>
+                <option selected>Administrador</option>
+                <option>Recolector</option>
+                <option>Conductor</option>
+              </select>
+
+              <label for="password" class="col-form-label">Contraseña</label>
+              <input  type="password" 
+                      class="form-control" 
+                      id="password"
+                      [(ngModel)]="registro.pass"
+                      name="pass">
+
+              <label for="email" class="col-form-label">Correo electrónico</label>
+              <input  type="email" 
+                      class="form-control" 
+                      id="email"
+                      [(ngModel)]="registro.email"
+                      name="email">
+                      <!-- <input [(ngModel)]="person.firstName" name="first"> -->
+            </div>
+        </form>
+      </div>
+      <div class="botones">
+        <button class="btn-filtrar mb-3" type="submit">Actualizar</button>
+        <a class="btn-limpiar mb-3" data-dismiss="modal">Cancelar</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- EDITAR REGISTRO -->
