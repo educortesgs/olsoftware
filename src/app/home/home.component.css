@@ -1,8 +1,3 @@
-/*!
- * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/templates/simple-sidebar)
- * Copyright 2013-2020 Start Bootstrap
- * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
- */
  #page-content-wrapper {
   background-color: #f7f7f7;
 }
@@ -187,7 +182,7 @@ a{cursor: pointer;}
 /*Botones*/
 .botones{
   text-decoration: none;
-  margin: 20px auto;
+  display: flex;
 }
 .btn-filtrar, .btn-limpiar{
   border-radius: 10px;
@@ -199,7 +194,6 @@ a{cursor: pointer;}
  color: white;
  padding: 10px 29px;
  border: 1px solid #84bb40;
- margin-right: 15px;
 }
 .btn-filtrar:hover{
   color: white;
@@ -210,7 +204,7 @@ a{cursor: pointer;}
   padding: 10px 25px;
   background-color: transparent;
   border: 1px solid #84bb40;
-  margin-left: 15px;
+  margin-left: auto;
 }
 .btn-limpiar:hover{
   color: #84bb40;
@@ -239,4 +233,19 @@ footer{
   font-size: 15px;
   margin-left: auto;
   margin-right: 20px;
+}
+
+.modal-content .btn-filtrar{
+ margin-left: 20%;
+}
+.modal-content .btn-limpiar{
+  margin-right: 20%;
+}
+@media (max-width: 480px) {
+  .modal-content .btn-filtrar{
+    margin-left: 5%;
+  }
+  .modal-content .btn-limpiar{
+    margin-right: 5%;
+  }
 }

@@ -1,8 +1,4 @@
 <div class="" [className]="myClass ? 'toggled d-flex': 'off d-flex'" id="wrapper" >
-<!-- *ngIf="!user$; then redireccionar()" -->
-
-
-
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading"><i class="fas fa-circle"></i>OLSoftware </div>
@@ -50,12 +46,6 @@
               <a class="dropdown-item" href="#">Hijo1</a>
             </div>
         </li>
-        <!-- <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -105,7 +95,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let registro of registros; let i = index">
+                  <tr *ngFor="let registro of registros; 
+                  let i = index">
                     <td>{{registro.nombre}}</td>
                     <td>{{registro.apellido}}</td>
                     <td>{{registro.cc}}</td>
@@ -143,13 +134,17 @@
         </div>
 
 
+
+
+
 <!-- Filtro -->
         <div class="contenedor-filtrar">
-          <form action="">
-            <div class="filtrar">
+          <form>
+
+            <div class="filtrar form-group">
                 <h2 class="mt-4"><i class="fas fa-filter"></i> Filtrar búsqueda</h2>
-                <label for="nombre">Nombre
-                <input type="text" name="nombre" id="nombre1" class="form-control"></label>
+                <label for="nombre">Nombre</label>
+                <input name="nombre" id="nombre1" class="form-control">
 
                 <label for="apellidos">Apellidos
                 <input type="text" name="apellidos" id="apellidos1" class="form-control"></label>
@@ -184,13 +179,13 @@
 
             </div>
             <div class="botones">
-              <button class="btn-filtrar mb-3" (click)="filtrar()" type="submit">Filtrar</button>
+              <button class="btn-filtrar mb-3" type="submit">Filtrar</button>
               <button class="btn-limpiar mb-3">Limpiar</button>
           </div>
           </form>
         </div>
 <!-- Filtro -->
-        </div>
+      </div>
         <footer>
           <div class="contenedor-footer">
             <h3>OLSoftware - 2018</h3>
@@ -201,8 +196,6 @@
 
   </div>
   <!-- /#wrapper -->
-
-
 <!-- CREAR REGISTRO -->
 <div class="modal fade" id="crear-registro" tabindex="-1" role="dialog" aria-labelledby="example-crear-registro" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -390,8 +383,8 @@
         </form>
       </div>
       <div class="botones">
-        <button class="btn-filtrar mb-3"  (click)="actualizar()" type="submit">Actualizar</button>
-        <a class="btn-limpiar mb-3" data-dismiss="modal">Cancelar</a>
+        <button class="btn-filtrar mb-3"  (click)="actualizar()" type="submit">Aceptar</button>
+        <button class="btn-limpiar mb-3" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>

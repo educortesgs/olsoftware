@@ -13,22 +13,20 @@ export class RegistrosService {
 
   constructor( private http: HttpClient ) { }
 
-  crearRegistro( registro:registrosModel ){
+
+
+  crearRegistro( registro: registrosModel ){
     return this.http.post(`${this.url}/registros.json`, registro).pipe(
-      map( (resp: any)=>{
+      map( (resp: any) => {
         registro.id = resp.name;
         return registro;
       })
     );
   }
 
-  
-
-  borrarRegistro(id:string){
+  borrarRegistro(id: string){
     return this.http.delete(`${this.url}/registros/${id}.json`);
   }
-
-
 
   actualizarRegistro(registro: registrosModel){
     const registroTemp = {
@@ -38,7 +36,7 @@ export class RegistrosService {
     return this.http.put(`${this.url}/registros/${registro.id}.json`, registroTemp);
   }
 
-  getRegistro(id:string){
+  getRegistro(id: string){
     return this.http.get(`${this.url}/registros/${id}.json`);
   }
 
@@ -47,7 +45,7 @@ export class RegistrosService {
       map(this.crearArreglo)
     );
   }
-  private crearArreglo(registrosObj: Object){
+  private crearArreglo(registrosObj: object){
     const registros: registrosModel[] = [];
     console.log(registrosObj);
     if (registrosObj === null ){
