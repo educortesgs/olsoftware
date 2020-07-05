@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   registros: registrosModel[]=[];
   public user$: Observable<any> = this.authSvc.afAuth.user;
   registro: registrosModel = new registrosModel();
+  mostrarEditar: any;
 
   constructor(private authSvc:AuthService, 
               private router:Router, 
@@ -50,7 +51,6 @@ export class HomeComponent implements OnInit {
   }
 
   guardar( form: NgForm ){
-
     if(form.invalid){
       swal({
         title: "¡Error!",
@@ -65,8 +65,8 @@ export class HomeComponent implements OnInit {
       icon: "success"
     }).then((value)=>{
       form.reset();
+      this.ngOnInit();
     });
-
     this.registroService.crearRegistro(this.registro).subscribe(resp=>{
       console.log(resp);
       this.registro=resp;
@@ -74,29 +74,51 @@ export class HomeComponent implements OnInit {
   }
 
   actualizar(){
-    this.registroService.actualizarRegistro(this.registro).subscribe(resp=>{
-      console.log(resp);
-      console.log(this.registro.id);
-      
+    this.registroService.actualizarRegistro(this.mostrarEditar).subscribe((resp:any)=>{
+      if (resp) {
+        swal({
+          title: "Correcto",
+          text: "Hecho correctamente",
+          icon: "success"
+        }).then((value) =>{
+          this.mostrarEditar = [];
+          this.ngOnInit();
+        });
+      }
     });
   }
 
   pruebaeditar(registro:any){
     console.log(registro);
-    // this.registroService.getRegistro(registro.id).subscribe((resp:registrosModel)=>{
-    //   this.registro = resp;
-    //   console.log(registro);
-    //   console.log(resp);
-    // });
+    this.mostrarEditar = registro;
+  }
+
+  borrarRegistro(registro:registrosModel, i:number){
+    swal({
+      title: "¿Estás segur@?",
+      text: `Estás a punto de borrar a ${registro.nombre}` ,
+      icon: "warning",
+      buttons: ["Cancelar", "Aceptar"],
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("El registro ha sido eliminado!", {
+          icon: "success",
+        });
+        this.registros.splice(i, 1);
+        this.registroService.borrarRegistro(registro.id).subscribe();
+      } else {
+        swal("Se canceló la operción");
+      }
+    });
+  }
+
+  filtrar(){
 
   }
-  borrarRegistro(registro:registrosModel, i:number){
-
-    
-
-    //El maldito sweet alert no funcionaa bien ._.
-    this.registros.splice(i, 1);
-    this.registroService.borrarRegistro(registro.id).subscribe();
+  cancelar(form: NgForm){
+    form.reset();
   }
 
 

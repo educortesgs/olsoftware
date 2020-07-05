@@ -88,7 +88,6 @@
         <div class="contenedor-usuario">
             <div class="titulo">
               <h2 class="mt-4"><i class="fas fa-users"></i> Usuarios Existentes</h2>
-              <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crear-registro" data-whatever="@getbootstrap">Open modal for @getbootstrap</button> -->
               <a class="btn-crear mt-3" data-toggle="modal" data-target="#crear-registro" data-whatever="@getbootstrap"><i class="fa fa-plus"> </i> Crear</a>
             </div>
             <div class="datos">
@@ -120,7 +119,6 @@
                     </td>
                   </tr>
                 </tbody>
-                
               </table>
 
               <div  *ngIf="!cargando && registros.length <= 0"
@@ -145,21 +143,22 @@
         </div>
 
 
-
+<!-- Filtro -->
         <div class="contenedor-filtrar">
+          <form action="">
             <div class="filtrar">
                 <h2 class="mt-4"><i class="fas fa-filter"></i> Filtrar búsqueda</h2>
                 <label for="nombre">Nombre
-                <input type="text" name="nombre" id="nombre" class="form-control"></label>
+                <input type="text" name="nombre" id="nombre1" class="form-control"></label>
 
                 <label for="apellidos">Apellidos
-                <input type="text" name="apellidos" id="apellidos" class="form-control"></label>
+                <input type="text" name="apellidos" id="apellidos1" class="form-control"></label>
 
                 <label for="cc">Identificación (C.C)
-                <input type="text" name="cc" id="cc" class="form-control"></label>
+                <input type="text" name="cc" id="cc1" class="form-control"></label>
 
                 <label for="rol">Rol asociado
-                <select name="rol" id="rol">
+                <select name="rol" id="rol1">
                     <option selected></option>
                     <option>Administrador</option>
                     <option>Recolector</option>
@@ -167,7 +166,7 @@
                 </select></label>
 
                 <label for="estado">Estado
-                    <select name="estado" id="estado">
+                    <select name="estado" id="estado1">
                         <option selected></option>
                         <option>Activo</option>
                         <option>Inactivo</option>
@@ -175,19 +174,22 @@
                 </label>
 
                 <label for="password">Contraseña
-                <input type="text" name="password" id="password" class="form-control"></label>
+                <input type="text" name="password" id="password1" class="form-control"></label>
 
                 <label for="tel">Teléfono
-                <input type="text" name="tel" id="tel" class="form-control"></label>
+                <input type="text" name="tel" id="tel1" class="form-control"></label>
 
                 <label for="email">Correo electrónico
-                <input type="text" name="email" id="email" class="form-control"></label>
-                <div class="botones">
-                    <a class="btn-filtrar mb-3">Filtrar</a>
-                    <a class="btn-limpiar mb-3">Limpiar</a>
-                </div>
+                <input type="text" name="email" id="email1" class="form-control"></label>
+
             </div>
+            <div class="botones">
+              <button class="btn-filtrar mb-3" (click)="filtrar()" type="submit">Filtrar</button>
+              <button class="btn-limpiar mb-3">Limpiar</button>
+          </div>
+          </form>
         </div>
+<!-- Filtro -->
         </div>
         <footer>
           <div class="contenedor-footer">
@@ -301,7 +303,7 @@
 </div>
 <!-- CREAR REGISTRO -->
 <!-- EDITAR REGISTRO -->
-<div class="modal fade" id="editar-registro" tabindex="-1" role="dialog" aria-labelledby="example-editar-registro" aria-hidden="true">
+<div class="modal fade" id="editar-registro" tabindex="-1" role="dialog" aria-labelledby="example-editar-registro" aria-hidden="true" *ngIf="mostrarEditar">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -319,7 +321,7 @@
               <input  type="text" 
                       class="form-control" 
                       id="nombre"
-                      [(ngModel)]="registro.nombre"
+                      [(ngModel)]="mostrarEditar.nombre"
                       name="nombre"
                       required>
 
@@ -327,14 +329,14 @@
               <input  type="text" 
                       class="form-control" 
                       id="cc"
-                      [(ngModel)]="registro.cc"
+                      [(ngModel)]="mostrarEditar.cc"
                       name="cc"
                       required>
 
               <label for="estado" class="col-form-label">Estado</label>
               <select id="estado"
                       class="form-control"
-                      [(ngModel)]="registro.estado"
+                      [(ngModel)]="mostrarEditar.estado"
                       name="estado"
                       required>
                 <option selected>Activo</option>
@@ -345,7 +347,7 @@
               <input  type="text" 
                       class="form-control" 
                       id="tel"
-                      [(ngModel)]="registro.tel"
+                      [(ngModel)]="mostrarEditar.tel"
                       name="tel"
                       required>
             </div>
@@ -355,14 +357,14 @@
               <input  type="text" 
                       class="form-control" 
                       id="apellido"
-                      [(ngModel)]="registro.apellido"
+                      [(ngModel)]="mostrarEditar.apellido"
                       name="apellido"
                       required>
 
               <label for="rol" class="col-form-label">Rol asiciado</label>
               <select id="rol"
                       class="form-control"
-                      [(ngModel)]="registro.rol"
+                      [(ngModel)]="mostrarEditar.rol"
                       name="rol"
                       required>
                 <option selected>Administrador</option>
@@ -374,21 +376,21 @@
               <input  type="password" 
                       class="form-control" 
                       id="password"
-                      [(ngModel)]="registro.pass"
+                      [(ngModel)]="mostrarEditar.pass"
                       name="pass">
 
               <label for="email" class="col-form-label">Correo electrónico</label>
               <input  type="email" 
                       class="form-control" 
                       id="email"
-                      [(ngModel)]="registro.email"
+                      [(ngModel)]="mostrarEditar.email"
                       name="email">
                       <!-- <input [(ngModel)]="person.firstName" name="first"> -->
             </div>
         </form>
       </div>
       <div class="botones">
-        <button class="btn-filtrar mb-3"  (click)="pruebaeditar(registro)" type="submit">Actualizar</button>
+        <button class="btn-filtrar mb-3"  (click)="actualizar()" type="submit">Actualizar</button>
         <a class="btn-limpiar mb-3" data-dismiss="modal">Cancelar</a>
       </div>
     </div>
