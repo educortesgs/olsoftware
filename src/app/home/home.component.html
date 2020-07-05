@@ -76,10 +76,9 @@
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
               <a class="nav-link"  *ngIf="user$">{{ user.email }} </a>
-              <!-- {{user$ | async | json}} -->
             </li>
             <li class="">
-              <a class="" (click)="onLogout()"><i class="fas fa-sign-out-alt"></i></a>
+              <a class="logout" (click)="onLogout()"><i class="fas fa-sign-out-alt"></i></a>
             </li>
           </ul>
         </div>
@@ -93,7 +92,7 @@
               <a class="btn-crear mt-3" data-toggle="modal" data-target="#crear-registro" data-whatever="@getbootstrap"><i class="fa fa-plus"> </i> Crear</a>
             </div>
             <div class="datos">
-              <table class="table mt-3">
+              <table class="table mt-3" *ngIf="registros.length != 0">
                 <thead>
                   <tr>
                     <th scope="col">Nombres</th>
@@ -107,27 +106,32 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Eduardo</th>
-                    <td>Cortes</td>
-                    <td>1143874920</td>
-                    <td>Administrador</td>
-                    <td>Activo</td>
-                    <td>3226106845</td>
-                    <td>educortesgs@hotmail.com</td>
-                    <td><a class="btn-crear mt-3" data-toggle="modal" data-target="#editar-registro" data-whatever="@getbootstrap"><i class="fas fa-user-edit"></i> </a><i class="fas fa-trash"></i></td>
+                  <tr *ngFor="let registro of registros; let i = index">
+                    <td>{{registro.nombre}}</td>
+                    <td>{{registro.apellido}}</td>
+                    <td>{{registro.cc}}</td>
+                    <td>{{registro.rol}}</td>
+                    <td>{{registro.estado}}</td>
+                    <td>{{registro.tel}}</td>
+                    <td>{{registro.email}}</td>
+                    <td class="accion">
+                      <a class="mt-3 btn-edit" (click)="pruebaeditar(registro)" data-toggle="modal" data-target="#editar-registro" data-whatever="@getbootstrap"><i class="fas fa-pencil-alt"></i></a>
+                      <a class="mt-3 btn-delete" (click)="borrarRegistro(registro, i)"><i class="fas fa-trash"></i></a>
+                    </td>
                   </tr>
                 </tbody>
                 
               </table>
 
-              <div class="alert alert-warning text-center mt-3">
+              <div  *ngIf="!cargando && registros.length <= 0"
+                    class="alert alert-warning text-center mt-3">
                 <h4 class="alert-heading">No hay registros</h4>
                 <p>
                   <i class="fa fa-exclamation fa-2x"></i>
                 </p>
               </div>
-              <div class="alert alert-info text-center mt-3">
+              <div  *ngIf="cargando"
+                    class="alert alert-info text-center mt-3">
                 <h4 class="alert-heading">Cargando</h4>
                 <p>
                   <i class="fa fa-sync-alt fa-spin fa-2x"></i>
@@ -185,6 +189,11 @@
             </div>
         </div>
         </div>
+        <footer>
+          <div class="contenedor-footer">
+            <h3>OLSoftware - 2018</h3>
+          </div>
+        </footer>
     </div>
     <!-- /#page-content-wrapper -->
 
@@ -379,7 +388,7 @@
         </form>
       </div>
       <div class="botones">
-        <button class="btn-filtrar mb-3" type="submit">Actualizar</button>
+        <button class="btn-filtrar mb-3"  (click)="pruebaeditar(registro)" type="submit">Actualizar</button>
         <a class="btn-limpiar mb-3" data-dismiss="modal">Cancelar</a>
       </div>
     </div>

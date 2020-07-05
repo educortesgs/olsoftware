@@ -22,12 +22,43 @@ export class RegistrosService {
     );
   }
 
-  actualizarRegistro(registro: registrosModel){
+  
 
+  borrarRegistro(id:string){
+    return this.http.delete(`${this.url}/registros/${id}.json`);
+  }
+
+
+
+  actualizarRegistro(registro: registrosModel){
     const registroTemp = {
       ...registro
     };
     delete registroTemp.id;
     return this.http.put(`${this.url}/registros/${registro.id}.json`, registroTemp);
+  }
+
+  getRegistro(id:string){
+    return this.http.get(`${this.url}/registros/${id}.json`);
+  }
+
+  getRegistros(){
+    return this.http.get(`${this.url}/registros.json`).pipe(
+      map(this.crearArreglo)
+    );
+  }
+  private crearArreglo(registrosObj: Object){
+    const registros: registrosModel[] = [];
+    console.log(registrosObj);
+    if (registrosObj === null ){
+      return[];
+    }
+    Object.keys(registrosObj).forEach(key => {
+      const registro: registrosModel = registrosObj[key];
+      registro.id = key;
+
+      registros.push(registro);
+    });
+    return registros;
   }
 }

@@ -6,6 +6,7 @@ import { registrosModel } from '../models/registros.model';
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert';
 import { RegistrosService } from '../services/registros.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,8 @@ import { RegistrosService } from '../services/registros.service';
 })
 export class HomeComponent implements OnInit {
   
+  cargando = false;
+  registros: registrosModel[]=[];
   public user$: Observable<any> = this.authSvc.afAuth.user;
   registro: registrosModel = new registrosModel();
 
@@ -24,6 +27,11 @@ export class HomeComponent implements OnInit {
   public myClass: boolean = true;
 
   async ngOnInit(){
+
+    this.cargando=true;
+    this.registroService.getRegistros().subscribe(resp => {
+                            this.registros=resp,
+                            this.cargando=false;}); 
 
   }
 
@@ -41,7 +49,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  
   guardar( form: NgForm ){
 
     if(form.invalid){
@@ -69,9 +76,28 @@ export class HomeComponent implements OnInit {
   actualizar(){
     this.registroService.actualizarRegistro(this.registro).subscribe(resp=>{
       console.log(resp);
+      console.log(this.registro.id);
+      
     });
   }
 
+  pruebaeditar(registro:any){
+    console.log(registro);
+    // this.registroService.getRegistro(registro.id).subscribe((resp:registrosModel)=>{
+    //   this.registro = resp;
+    //   console.log(registro);
+    //   console.log(resp);
+    // });
+
+  }
+  borrarRegistro(registro:registrosModel, i:number){
+
+    
+
+    //El maldito sweet alert no funcionaa bien ._.
+    this.registros.splice(i, 1);
+    this.registroService.borrarRegistro(registro.id).subscribe();
+  }
 
 
 

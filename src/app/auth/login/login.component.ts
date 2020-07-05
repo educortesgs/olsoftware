@@ -28,29 +28,31 @@ export class LoginComponent implements OnInit {
   async onLogin(){
 
    
-      this.recarga = true;
+      
       const {user, password} = this.loginForm.value;
       try {
         const usuario = await this.authSvc.login(user, password);
         if(usuario){
+          this.recarga = true;
           //Redirecciona al homepage ya loggeado
           this.setlogin();
           setTimeout(() => {
             this.login();
-           }, 5000);
+            
+           }, 3000);
           
+        } else{
+          swal({
+            title: "Error!",
+            text: "Faltan campos o alguno es incorrecto",
+            icon: "error",
+          });
         }
       } catch (error) {
 
         console.log(error);
       }
-    // }else{
-    //   swal({
-    //     title: "Error!",
-    //     text: "Ingrese todos los campos",
-    //     icon: "warning",
-    //   })
-    // }
+
   }
   public login(){
     this.router.navigate(['/home']);

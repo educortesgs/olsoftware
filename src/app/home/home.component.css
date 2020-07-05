@@ -77,6 +77,16 @@
   cursor: pointer;
   padding: 15px;
 }
+.navbar-nav{
+  display: flex;
+  flex-direction: row;
+}
+@media (min-width: 768px) {
+  .navbar-nav{
+    flex-direction: row;
+  }
+}
+a{cursor: pointer;}
 .navbar p{
   margin: auto auto auto 0;
   font-size: 18px;
@@ -114,24 +124,32 @@
   }
 }
 .contenedor-filtrar{
-  width: 100%;
+  width: 95%;
   background-color: white;
-  margin: 10px;
+  margin: 0;
   padding: 20px;
   border-radius: 10px;
 }
 @media (min-width: 768px) {
   .contenedor-filtrar{
     width: 100%;
-    max-width: 350px;
+    margin: 10px;
+    max-width: 250px;
   }
 }
 .contenedor-usuario{
-  margin: 10px;
+  margin: 0;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  width: 100%;
+  width: 95%;
+  overflow-x: scroll; 
+}
+@media (min-width: 768px) {
+  .contenedor-usuario{
+    margin: 10px;
+    width: 100%;
+  }
 }
 .titulo{
   display: flex;
@@ -148,6 +166,12 @@
   margin-left: auto;
   transition: all .3s ease-in-out;
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .btn-crear{
+    padding: 5px 5px;
+  }
 }
 .btn-crear:hover{
   color: white;
@@ -191,4 +215,28 @@
 .btn-limpiar:hover{
   color: #84bb40;
   background-color: #e8f1dd;
+}
+.accion{
+  flex-direction: row;
+}
+.btn-edit{
+  color: #0c225c;
+  margin-right: 3px;
+  font-size: 20px;
+}
+.btn-delete{
+  margin-left: 3px;
+  font-size: 20px;
+}
+footer{
+  padding: 10px 0;
+}
+.contenedor-footer{
+  display: flex;
+}
+.contenedor-footer h3{
+  color: rgb(131, 131, 131);
+  font-size: 15px;
+  margin-left: auto;
+  margin-right: 20px;
 }

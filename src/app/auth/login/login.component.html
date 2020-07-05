@@ -1,26 +1,29 @@
-<div class="contenedor-principal">
-  <div class="login">
-    <h2>Inicio de sesión</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <input type="text" placeholder="Usuario &#xf007;" name="usuario" id="usuario"
-      class="form-control" formControlName="user">
-      <input type="password" placeholder="Contraseña &#xf13e;" name="pass" id="pass"
-      class="form-control" formControlName="password">
-      <button type="submit" class="btn btn-primary ">Iniciar Sesión</button>
-    </form>
-  </div>
-</div>
+<div class="contenedor">
+  <div class="contenedor-principal">
+    <div class="titulo">
+      <h3>Aplicación OLSoftware</h3>
+      <p>Prueba práctica Front-end Senior</p>
+    </div>  
+    <div class="login">
+      <h2>Inicio de sesión</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <input type="text" placeholder="Usuario &#xf007;" name="usuario" id="usuario"
+         formControlName="user">
+        <input type="password" placeholder="Contraseña &#xf13e;" name="pass" id="pass"
+         formControlName="password">
+        <button type="submit" class="btn btn-primary ">Iniciar Sesión</button>
+      </form>
+    </div>
 
+  </div>
 
-<div class="recarga" *ngIf="recarga">
-  <h1>Estamos preparando todo para tí</h1>
-  <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
-    <span class="sr-only">Loading...</span>
+  <div class="recarga" *ngIf="recarga">
+    <h1>Estamos preparando todo para tí</h1>
+    <div class="spiners">
+      <div class="spinner-grow text-light m-3" style="width: 3rem; height: 3rem;" role="status"></div>
+      <div class="spinner-grow text-light m-3" style="width: 3rem; height: 3rem;" role="status"></div>
+      <div class="spinner-grow text-light m-3" style="width: 3rem; height: 3rem;" role="status"></div>
+    </div>
   </div>
-  <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-  <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
+
 </div>
